@@ -16,7 +16,7 @@ CREATE TABLE courses(
 course_id INT PRIMARY KEY,
 title VARCHAR(50) NOT NULL,
 description VARCHAR(255),
-instructor VARCHAR(50) NOT NULL,
+instructor VARCHAR(50) NOT NULL
 );
 ALTER TABLE students
 ADD advisor_id INTEGER;
