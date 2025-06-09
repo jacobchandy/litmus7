@@ -64,7 +64,7 @@ SELECT * FROM orders WHERE DATEDIFF(CURDATE(),order_date)<=30;
 
 SELECT product_name, price FROM products;
 
-SELECT count(product_id)
+SELECT count(product_id) as total_products
 FROM products
 GROUP BY category;
 
@@ -93,53 +93,53 @@ LEFT JOIN orders
 ON customers.customer_id=orders.customer_id
 WHERE order_id is NULL;
 
-SELECT customer_id, SUM(total_amount)
+SELECT customer_id, SUM(total_amount) as total_spent
 FROM orders
 GROUP BY customer_id;
 
-SELECT product_name, SUM(quantity)
+SELECT product_name, SUM(quantity) as total_quantity
 FROM products
 JOIN orderdetails
 ON products.product_id = orderdetails.product_id
 GROUP BY products.product_id;
 
-SELECT customer_id, AVG(total_amount)
+SELECT customer_id, AVG(total_amount) as average_spent
 FROM orders
 GROUP BY customer_id;
 
-SELECT products.category, SUM(orderdetails.price)
+SELECT products.category, SUM(orderdetails.price) as total_sales
 FROM products
 JOIN orderdetails
 ON products.product_id = orderdetails.product_id
 GROUP BY products.category;
 
-SELECT customer_id, SUM(total_amount)
+SELECT customer_id, SUM(total_amount) as total_spent
 FROM orders 
 GROUP BY customer_id
-HAVING SUM(total_amount) > (SELECT AVG(total_amount) FROM orders);
+HAVING total_spent > (SELECT AVG(total_amount) FROM orders);
 
 SELECT product_name
 FROM products
 WHERE product_id NOT IN (SELECT product_id FROM orderdetails);
 
-SELECT customer_id, MAX(order_date)
+SELECT customer_id, MAX(order_date) as last_order_date
 FROM orders
 GROUP BY customer_id;
 
-SELECT SUM(total_amount)
+SELECT SUM(total_amount) as total_revenue
 FROM orders
 GROUP BY customer_id
-ORDER BY SUM(total_amount) DESC;
+ORDER BY total_revenue DESC;
 
-SELECT customers.name, COUNT(orders.customer_id)
+SELECT customers.name, COUNT(orders.customer_id) as order_count
 FROM customers
 LEFT JOIN orders
 ON orders.customer_id = customers.customer_id
 GROUP BY customers.customer_id
-ORDER BY COUNT(orders.customer_id) DESC
+ORDER BY order_count DESC
 LIMIT 3;
 
-SELECT product_id, COUNT(DISTINCT customer_id)
+SELECT product_id, COUNT(DISTINCT customer_id) as unique_customers
 FROM orderdetails
 JOIN orders
 on orders.order_id = orderdetails.order_id

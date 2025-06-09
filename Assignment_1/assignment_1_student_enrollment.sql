@@ -1,29 +1,31 @@
-create table students(
-id integer primary key,
-name varchar(25) not null,
-email varchar(25),
-dob date
+CREATE TABLE students(
+student_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+first_name VARCHAR(25) NOT NULL,
+last_name VARCHAR(25) NOT NULL,
+email VARCHAR(50) NOT NULL UNIQUE,
+dob DATE
 );
-create table advisors(
-aid integer primary key,
-name varchar(25) not null,
-email varchar(25),
-specialization varchar(25)
+CREATE TABLE advisors(
+advisor_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+first_name VARCHAR(25) NOT NULL,
+last_name VARCHAR(25) NOT NULL,
+email VARCHAR(50) NOT NULL UNIQUE,
+specialization VARCHAR(50) NOT NULL
 );
-create table courses(
-cid integer primary key,
-title varchar(50) not null,
-description varchar(50),
-instructor varchar(25) not null
+CREATE TABLE courses(
+course_id INT PRIMARY KEY,
+title VARCHAR(50) NOT NULL,
+description VARCHAR(255),
+instructor VARCHAR(50) NOT NULL,
 );
-alter table students
-add advisorid integer;
-alter table students
-add foreign key(advisorid) references advisors(aid);
-create table enrols(
-studentid integer,
-courseid integer,
-primary key(studentid, courseid),
-foreign key(studentid) references students(id) on delete cascade,
-foreign key(courseid) references courses(cid) on delete cascade
+ALTER TABLE students
+ADD advisor_id INTEGER;
+ALTER TABLE students
+ADD FOREIGN KEY(advisor_id) REFERENCES advisors(advisor_id);
+CREATE TABLE student_course_map(
+student_id INTEGER,
+course_id INTEGER,
+PRIMARY KEY(student_id, course_id),
+FOREIGN KEY(student_id) REFERENCES students(student_id) ON DELETE CASCADE,
+FOREIGN KEY(course_id) REFERENCES courses(course_id) ON DELETE CASCADE
 );
