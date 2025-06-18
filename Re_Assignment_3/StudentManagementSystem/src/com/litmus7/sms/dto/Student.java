@@ -23,7 +23,7 @@ public class Student {
 	 * Read student details using scanner
 	 */
 	public void inputDetails(Scanner scanner) {
-
+		scanner.nextLine();
 		System.out.print("Enter the student name: ");
 		name = scanner.nextLine();
 
