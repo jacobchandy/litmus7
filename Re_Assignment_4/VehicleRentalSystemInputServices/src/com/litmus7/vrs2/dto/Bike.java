@@ -1,7 +1,5 @@
 package com.litmus7.vrs2.dto;
 
-import java.util.Scanner;
-
 /**
  * Bike class inheriting common vehicle attributes and adding engine capacity
  * and gear information.
@@ -9,15 +7,6 @@ import java.util.Scanner;
 public class Bike extends Vehicle {
 	private boolean hasGear;
 	private int engineCapacity;
-
-	/**
-	 * Default Constructor
-	 */
-	public Bike() {
-		super();
-		this.hasGear = true;
-		this.engineCapacity = 150;
-	}
 
 	/**
 	 * Parameterized Constructor
@@ -34,28 +23,8 @@ public class Bike extends Vehicle {
 		this.engineCapacity = engineCapacity;
 	}
 
-	/**
-	 * Input bike details
-	 */
-	public void inputDetails(Scanner scanner) {
-		super.inputDetails(scanner);
-
-		System.out.print("Does it have gears (true/false)?: ");
-		this.hasGear = scanner.nextBoolean();
-		scanner.nextLine();
-
-		System.out.print("Enter engine capacity (cc): ");
-		this.engineCapacity = scanner.nextInt();
-
-	}
-
-	/**
-	 * Display car details
-	 */
-	public void displayDetails() {
-		super.displayDetails();
-		System.out.println("Has Gear: " + this.hasGear);
-		System.out.println("Engine Capacity: " + this.engineCapacity + "(cc)");
-		System.out.println();
+	@Override
+	public String toString() {
+		return "Bike => " + super.toString() + " | hasGear: " + hasGear + " | engineCapacity: " + engineCapacity;
 	}
 }

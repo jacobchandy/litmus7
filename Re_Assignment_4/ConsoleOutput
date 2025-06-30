@@ -1,128 +1,39 @@
-Vehicle List:
-Brand: Toyota
-Model: Corolla
-Rent Price/Day: 45.5
-Number of Doors: 4
-Automatic: true
+Loading Vehicles from vehicles.txt....
+Loaded Successfully...
+Vehicle List
+Car => Brand: Toyota | Model: Corolla | Rent/Day: 45.5 | Available: true | numberOfDoors: 4 | isAutomatic: true
+Bike => Brand: Yamaha | Model: R15 | Rent/Day: 30.0 | Available: true | hasGear: true | engineCapacity: 150
+Car => Brand: Ford | Model: Focus | Rent/Day: 50.0 | Available: true | numberOfDoors: 5 | isAutomatic: false
+Bike => Brand: Honda | Model: CBR | Rent/Day: 35.5 | Available: true | hasGear: false | engineCapacity: 250
+Car => Brand: Chevrolet | Model: Malibu | Rent/Day: 55.0 | Available: true | numberOfDoors: 4 | isAutomatic: true
+Bike => Brand: Suzuki | Model: GSX | Rent/Day: 40.0 | Available: true | hasGear: true | engineCapacity: 200
 
-Brand: Yamaha
-Model: R15
-Rent Price/Day: 30.0
-Has Gear: true
-Engine Capacity: 150(cc)
+Adding a Vehicle to List...
+Vehicle Added Successfully
 
-Brand: Ford
-Model: Focus
-Rent Price/Day: 50.0
-Number of Doors: 5
-Automatic: false
+Vehicle List After Adding
+Car => Brand: Toyota | Model: Corolla | Rent/Day: 45.5 | Available: true | numberOfDoors: 4 | isAutomatic: true
+Bike => Brand: Yamaha | Model: R15 | Rent/Day: 30.0 | Available: true | hasGear: true | engineCapacity: 150
+Car => Brand: Ford | Model: Focus | Rent/Day: 50.0 | Available: true | numberOfDoors: 5 | isAutomatic: false
+Bike => Brand: Honda | Model: CBR | Rent/Day: 35.5 | Available: true | hasGear: false | engineCapacity: 250
+Car => Brand: Chevrolet | Model: Malibu | Rent/Day: 55.0 | Available: true | numberOfDoors: 4 | isAutomatic: true
+Bike => Brand: Suzuki | Model: GSX | Rent/Day: 40.0 | Available: true | hasGear: true | engineCapacity: 200
+Bike => Brand: Suzuki | Model: GSR | Rent/Day: 42.0 | Available: true | hasGear: true | engineCapacity: 200
 
-Brand: Honda
-Model: CBR
-Rent Price/Day: 35.5
-Has Gear: false
-Engine Capacity: 250(cc)
+Search for a Brand..
+Bike => Brand: Suzuki | Model: GSX | Rent/Day: 40.0 | Available: true | hasGear: true | engineCapacity: 200
+Bike => Brand: Suzuki | Model: GSR | Rent/Day: 42.0 | Available: true | hasGear: true | engineCapacity: 200
 
-Brand: Chevrolet
-Model: Malibu
-Rent Price/Day: 55.0
-Number of Doors: 4
-Automatic: true
+Renting a Vehicle..
+Vehicle rented successfully
 
-Brand: Suzuki
-Model: GSX
-Rent Price/Day: 40.0
-Has Gear: true
-Engine Capacity: 200(cc)
+Return a Vehicle
+Vehicle has not been rented for return
 
-Adding vehicles by Input/Parameter constructor
---- Enter Car Details ---
-Enter Brand: Hyundai
-Enter model: Verna
-Enter rental price per day: 2500
-Enter number of doors: 4
-Is it automatic (true/false)?: true
-
---- Displaying Car Details ---
-Brand: Hyundai
-Model: Verna
-Rent Price/Day: 2500.0
-Number of Doors: 4
-Automatic: true
-
---- Enter Bike Details ---
-Enter Brand: TVS
-Enter model: Apache
-Enter rental price per day: 50
-Does it have gears (true/false)?: true
-Enter engine capacity (cc): 100
-
---- Displaying Bike Details ---
-Brand: TVS
-Model: Apache
-Rent Price/Day: 50.0
-Has Gear: true
-Engine Capacity: 100(cc)
-
-Updated Vehicle List:
-Brand: Toyota
-Model: Corolla
-Rent Price/Day: 45.5
-Number of Doors: 4
-Automatic: true
-
-Brand: Yamaha
-Model: R15
-Rent Price/Day: 30.0
-Has Gear: true
-Engine Capacity: 150(cc)
-
-Brand: Ford
-Model: Focus
-Rent Price/Day: 50.0
-Number of Doors: 5
-Automatic: false
-
-Brand: Honda
-Model: CBR
-Rent Price/Day: 35.5
-Has Gear: false
-Engine Capacity: 250(cc)
-
-Brand: Chevrolet
-Model: Malibu
-Rent Price/Day: 55.0
-Number of Doors: 4
-Automatic: true
-
-Brand: Suzuki
-Model: GSX
-Rent Price/Day: 40.0
-Has Gear: true
-Engine Capacity: 200(cc)
-
-Brand: Hyundai
-Model: Verna
-Rent Price/Day: 2500.0
-Number of Doors: 4
-Automatic: true
-
-Brand: TVS
-Model: Apache
-Rent Price/Day: 50.0
-Has Gear: true
-Engine Capacity: 100(cc)
-
-Brand: Honda
-Model: Civic
-Rent Price/Day: 1400.0
-Number of Doors: 4
-Automatic: false
-
-Brand: Suzuki
-Model: Gixxer
-Rent Price/Day: 600.0
-Has Gear: false
-Engine Capacity: 125(cc)
-
-Total Rent Price Per Day for All Vehicles: 4806.0
+Get All Available Vehicles
+Car => Brand: Toyota | Model: Corolla | Rent/Day: 45.5 | Available: true | numberOfDoors: 4 | isAutomatic: true
+Bike => Brand: Yamaha | Model: R15 | Rent/Day: 30.0 | Available: true | hasGear: true | engineCapacity: 150
+Car => Brand: Ford | Model: Focus | Rent/Day: 50.0 | Available: true | numberOfDoors: 5 | isAutomatic: false
+Car => Brand: Chevrolet | Model: Malibu | Rent/Day: 55.0 | Available: true | numberOfDoors: 4 | isAutomatic: true
+Bike => Brand: Suzuki | Model: GSX | Rent/Day: 40.0 | Available: true | hasGear: true | engineCapacity: 200
+Bike => Brand: Suzuki | Model: GSR | Rent/Day: 42.0 | Available: true | hasGear: true | engineCapacity: 200

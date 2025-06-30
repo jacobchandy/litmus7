@@ -1,6 +1,6 @@
 package com.litmus7.vrs2.dto;
 
-import java.util.Scanner;
+import java.util.Objects;
 
 /**
  * Vehicle attributes with common attributes like brand, model and rent
@@ -10,24 +10,7 @@ public class Vehicle {
 	private String brand;
 	private String model;
 	private double rentalPricePerDay;
-
-	/**
-	 * getter for rentPrice
-	 * 
-	 * @return rentalPricePerDay
-	 */
-	public double getRentalPricePerDay() {
-		return rentalPricePerDay;
-	}
-
-	/**
-	 * Default Constructor
-	 */
-	public Vehicle() {
-		this.brand = "None";
-		this.model = "None";
-		this.rentalPricePerDay = 0.0;
-	}
+	private boolean isAvailable = true;
 
 	/**
 	 * Parameterized Constructor
@@ -42,28 +25,46 @@ public class Vehicle {
 		this.rentalPricePerDay = rentalPricePerDay;
 	}
 
-	/**
-	 * Input the vehicle details
-	 */
-	public void inputDetails(Scanner scanner) {
-		System.out.print("Enter Brand: ");
-		brand = scanner.nextLine();
-
-		System.out.print("Enter model: ");
-		model = scanner.nextLine();
-
-		System.out.print("Enter rental price per day: ");
-		rentalPricePerDay = scanner.nextDouble();
-
+	public double getRentalPricePerDay() {
+		return rentalPricePerDay;
 	}
 
-	/**
-	 * Display the vehicle details
-	 */
-	public void displayDetails() {
-		System.out.println("Brand: " + this.brand);
-		System.out.println("Model: " + this.model);
-		System.out.println("Rent Price/Day: " + this.rentalPricePerDay);
+	public String getBrand() {
+		return brand;
 	}
 
+	public String getModel() {
+		return model;
+	}
+
+	public boolean isAvailable() {
+		return isAvailable;
+	}
+
+	public void setAvailable(boolean isAvailable) {
+		this.isAvailable = isAvailable;
+	}
+
+	@Override
+	public String toString() {
+		return "Brand: " + brand + " | Model: " + model + " | Rent/Day: " + rentalPricePerDay + " | Available: "
+				+ isAvailable;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(brand, model);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Vehicle other = (Vehicle) obj;
+		return Objects.equals(brand, other.brand) && Objects.equals(model, other.model);
+	}
 }

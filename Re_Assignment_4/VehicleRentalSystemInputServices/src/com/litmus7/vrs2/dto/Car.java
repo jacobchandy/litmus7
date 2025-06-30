@@ -1,7 +1,5 @@
 package com.litmus7.vrs2.dto;
 
-import java.util.Scanner;
-
 /**
  * Car class which inherits vehicle attributes and additional attributes like
  * number of doors and is Automatic or not
@@ -9,16 +7,6 @@ import java.util.Scanner;
 public class Car extends Vehicle {
 	private int numberOfDoors;
 	private boolean isAutomatic;
-
-	/**
-	 * Default Constructor
-	 */
-	public Car() {
-		super();
-		this.numberOfDoors = 4;
-		this.isAutomatic = false;
-
-	}
 
 	/**
 	 * Parameterized Constructor
@@ -35,28 +23,8 @@ public class Car extends Vehicle {
 		this.isAutomatic = isAutomatic;
 	}
 
-	/**
-	 * Input the car details
-	 */
-	public void inputDetails(Scanner scanner) {
-		super.inputDetails(scanner);
-
-		System.out.print("Enter number of doors: ");
-		this.numberOfDoors = scanner.nextInt();
-
-		System.out.print("Is it automatic (true/false)?: ");
-		this.isAutomatic = scanner.nextBoolean();
-		scanner.nextLine();
+	@Override
+	public String toString() {
+		return "Car => " + super.toString() + " | numberOfDoors: " + numberOfDoors + " | isAutomatic: " + isAutomatic;
 	}
-
-	/**
-	 * Display the car details
-	 */
-	public void displayDetails() {
-		super.displayDetails();
-		System.out.println("Number of Doors: " + this.numberOfDoors);
-		System.out.println("Automatic: " + this.isAutomatic);
-		System.out.println();
-	}
-
 }
