@@ -14,7 +14,7 @@ import com.litmus7.vrs2.exception.VehicleServiceException;
  * returning vehicles.
  */
 public class VehicleService {
-	VehicleFileDao vehicleFileDao = new VehicleFileDao();
+	private VehicleFileDao vehicleFileDao = new VehicleFileDao();
 	private List<Vehicle> vehicleList = new ArrayList<Vehicle>();
 
 	/**

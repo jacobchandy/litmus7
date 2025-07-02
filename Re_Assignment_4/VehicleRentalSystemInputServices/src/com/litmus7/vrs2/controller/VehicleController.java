@@ -15,7 +15,7 @@ import com.litmus7.vrs2.service.VehicleService;
 public class VehicleController {
 	private static final int SUCCESS_STATUS_CODE = 200;
 	private static final int ERROR_STATUS_CODE = 400;
-	VehicleService vehicleService = new VehicleService();
+	private VehicleService vehicleService = new VehicleService();
 
 	/**
 	 * Get Vehicles from the file
