@@ -24,6 +24,7 @@ public class Student {
 			System.out.print("Subject " + (i+1) + ":");
 			marks[i] = scanner.nextInt();
 		}
+		scanner.close();
 	}
 	private int calculateTotal() {
 		int sum = 0 ;

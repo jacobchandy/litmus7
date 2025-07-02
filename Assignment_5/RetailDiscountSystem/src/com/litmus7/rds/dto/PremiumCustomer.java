@@ -6,7 +6,6 @@ public class PremiumCustomer implements Discountable{
 	public double applyDiscount(double totalAmount) {
 		if (totalAmount > 5000) {
 			totalAmount -= totalAmount*10/100;
-
 		}
 		else {
 			totalAmount -= totalAmount*7/100;

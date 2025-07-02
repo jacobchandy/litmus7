@@ -7,13 +7,13 @@ import com.litmus7.rds.dto.*;
 public class RetailStoreApp {
 
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 		System.out.print("Enter the customer type (1-Regular, 2-Premium, 3-Wholesale): ");
 		
-		int type = sc.nextInt();
+		int type = scanner.nextInt();
 		
 		System.out.println("Ente the total Amount ");
-		double totalAmount = sc.nextInt();
+		double totalAmount = scanner.nextInt();
 		
 		Discountable customer = null;
 		switch(type) {
@@ -37,6 +37,7 @@ public class RetailStoreApp {
 	    System.out.println("Discount Applied: ₹" + (totalAmount - finalAmount));
 	    System.out.println("Final Payable Amount: ₹" + finalAmount);
 		
+		scanner.close();
 	}
 
 }

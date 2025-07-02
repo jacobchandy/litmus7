@@ -6,7 +6,6 @@ public class WholesaleCustomer implements Discountable{
 	public double applyDiscount(double totalAmount) {
 		if (totalAmount > 10000) {
 			totalAmount -= totalAmount*15/100;
-
 		}
 		else {
 			totalAmount -= totalAmount*10/100;
