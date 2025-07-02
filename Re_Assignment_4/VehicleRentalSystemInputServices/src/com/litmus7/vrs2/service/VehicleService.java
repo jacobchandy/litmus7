@@ -90,7 +90,7 @@ public class VehicleService {
 				return vehicle;
 			}
 		}
-		throw new VehicleServiceException("Vehicle with brand " + brand + "and model:" + model + " not found");
+		throw new VehicleServiceException("Vehicle with brand: " + brand + " and model: " + model + " not found");
 	}
 
 	/**

@@ -1,15 +1,13 @@
 package com.litmus7.vrs2.dto;
 
-import java.util.List;
-
 /**
  * A response wrapper class used by the controller layer to send operation
  * results back to the UI.
  */
-public class VehicleResponse {
+public class VehicleResponse<T> {
 	private int statusCode;
 	private String errorMessage;
-	private List<Vehicle> vehicles;
+	private T data;
 
 	public int getStatusCode() {
 		return statusCode;
@@ -27,11 +25,11 @@ public class VehicleResponse {
 		this.errorMessage = errorMessage;
 	}
 
-	public List<Vehicle> getVehicles() {
-		return vehicles;
+	public T getData() {
+		return data;
 	}
 
-	public void setVehicles(List<Vehicle> vehicles) {
-		this.vehicles = vehicles;
+	public void setData(T data) {
+		this.data = data;
 	}
 }

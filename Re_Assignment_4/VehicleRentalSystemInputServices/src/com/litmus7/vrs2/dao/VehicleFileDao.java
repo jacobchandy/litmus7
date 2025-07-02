@@ -32,10 +32,12 @@ public class VehicleFileDao {
 
 			while ((line = br.readLine()) != null) {
 				String[] parts = line.split(",");
-
-				// Parse the input
-				if (parts.length == 6) {
-					if ("Car".equals(parts[0])) {
+				try {
+					// Parse the input
+					if (parts.length != 6) {
+						throw new VehicleDataAccessException("Malformed line (expected 6 parts): " + line);
+					}
+					if ("Car".equalsIgnoreCase(parts[0])) {
 						String brand = parts[1];
 						String model = parts[2];
 						double rentalPricePerDay = Double.parseDouble(parts[3]);
@@ -44,7 +46,7 @@ public class VehicleFileDao {
 
 						vehicleList.add(new Car(brand, model, rentalPricePerDay, numberOfDoors, isAutomatic));
 
-					} else if ("Bike".equals(parts[0])) {
+					} else if ("Bike".equalsIgnoreCase(parts[0])) {
 						String brand = parts[1];
 						String model = parts[2];
 						double rentalPricePerDay = Double.parseDouble(parts[3]);
@@ -52,17 +54,18 @@ public class VehicleFileDao {
 						int engineCapacity = Integer.parseInt(parts[5]);
 
 						vehicleList.add(new Bike(brand, model, rentalPricePerDay, hasGear, engineCapacity));
+					} else {
+						throw new VehicleDataAccessException("Unknown vehicle type in line: " + line);
 					}
+				} catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+					throw new VehicleDataAccessException("Invalid number format or malformed data in line: " + line, e);
 				}
 			}
 		} catch (FileNotFoundException e) {
 			throw new VehicleDataAccessException(e.getMessage(), e);
-		}
-
-		catch (IOException e) {
+		} catch (IOException e) {
 			throw new VehicleDataAccessException(e.getMessage(), e);
 		}
-
 		return vehicleList;
 	}
 }

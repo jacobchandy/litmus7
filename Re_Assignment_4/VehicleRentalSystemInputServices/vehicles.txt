@@ -1,4 +1,4 @@
-Car,Toyota,Corolla,45.5,4,true
+Car2,Toyota,Corolla,45.5,4,true
 Bike,Yamaha,R15,30.0,true,150
 Car,Ford,Focus,50.0,5,false
 Bike,Honda,CBR,35.5,false,250

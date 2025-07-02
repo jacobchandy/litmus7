@@ -18,12 +18,12 @@ public class VehicleApp {
 
 		// Load vehicles from file
 		System.out.println("Loading Vehicles from vehicles.txt....");
-		VehicleResponse response = vehicleController.getVehiclesFromFile("vehicles.txt");
+		VehicleResponse<List<Vehicle>> response = vehicleController.getVehiclesFromFile("vehicles.txt");
 
 		if (response.getStatusCode() == 200) {
 			System.out.println("Loaded Successfully...");
 			System.out.println("Vehicle List");
-			List<Vehicle> vehicles = response.getVehicles();
+			List<Vehicle> vehicles = response.getData();
 			for (Vehicle vehicle : vehicles) {
 				System.out.println(vehicle);
 			}
@@ -33,9 +33,10 @@ public class VehicleApp {
 
 		// Add a vehicle to list
 		System.out.println("\nAdding a Vehicle to List...");
-		VehicleResponse response2 = vehicleController.addVehicleToList(new Bike("Suzuki", "GSR", 42, true, 200));
+		VehicleResponse<String> response2 = vehicleController
+				.addVehicleToList(new Bike("Suzuki", "GSR", 42, true, 200));
 		if (response2.getStatusCode() == 200) {
-			System.out.println("Vehicle Added Successfully");
+			System.out.println(response2.getData());
 		} else {
 			System.out.println(response2.getErrorMessage());
 		}
@@ -48,9 +49,9 @@ public class VehicleApp {
 
 		// Search for vehicles by brand name
 		System.out.println("\nSearch for a Brand..");
-		VehicleResponse response3 = vehicleController.searchVehicle("Suzuki");
+		VehicleResponse<List<Vehicle>> response3 = vehicleController.searchVehicle("Suzuki");
 		if (response3.getStatusCode() == 200) {
-			List<Vehicle> brandVehicles = response3.getVehicles();
+			List<Vehicle> brandVehicles = response3.getData();
 			for (Vehicle newVehicle : brandVehicles) {
 				System.out.println(newVehicle);
 			}
@@ -60,27 +61,27 @@ public class VehicleApp {
 
 		// Rent a vehicle
 		System.out.println("\nRenting a Vehicle..");
-		VehicleResponse response4 = vehicleController.rentVehicle("Honda", "CBR");
+		VehicleResponse<String> response4 = vehicleController.rentVehicle("Honda", "CBR");
 		if (response4.getStatusCode() == 200) {
-			System.out.println("Vehicle rented successfully");
+			System.out.println(response4.getData());
 		} else {
 			System.out.println(response4.getErrorMessage());
 		}
 
 		// Return back the vehicle
 		System.out.println("\nReturn a Vehicle");
-		VehicleResponse response5 = vehicleController.returnVehicle("Suzuki", "GSX");
+		VehicleResponse<String> response5 = vehicleController.returnVehicle("Suzuki", "GSX");
 		if (response5.getStatusCode() == 200) {
-			System.out.println("Vehicle returned successfully");
+			System.out.println();
 		} else {
 			System.out.println(response5.getErrorMessage());
 		}
 
 		// Get all available vehicles
 		System.out.println("\nGet All Available Vehicles");
-		VehicleResponse response6 = vehicleController.getAvailableVehicle();
+		VehicleResponse<List<Vehicle>> response6 = vehicleController.getAvailableVehicle();
 		if (response6.getStatusCode() == 200) {
-			for (Vehicle vehicle : response6.getVehicles()) {
+			for (Vehicle vehicle : response6.getData()) {
 				System.out.println(vehicle);
 			}
 		} else {

@@ -23,17 +23,17 @@ public class VehicleController {
 	 * @param filePath
 	 * @return response
 	 */
-	public VehicleResponse getVehiclesFromFile(String filePath) {
-		VehicleResponse response = new VehicleResponse();
+	public VehicleResponse<List<Vehicle>> getVehiclesFromFile(String filePath) {
+		VehicleResponse<List<Vehicle>> response = new VehicleResponse<List<Vehicle>>();
 		List<Vehicle> vehicles = null;
 
 		try {
 			vehicles = vehicleService.getVehiclesFromFile(filePath);
 			response.setStatusCode(SUCCESS_STATUS_CODE);
-			response.setVehicles(vehicles);
+			response.setData(vehicles);
 		} catch (VehicleServiceException e) {
 			response.setStatusCode(ERROR_STATUS_CODE);
-			response.setErrorMessage("Could not load vehicles from file");
+			response.setErrorMessage("Failed to load the file: " + e.getMessage());
 		}
 		return response;
 	}
@@ -44,10 +44,11 @@ public class VehicleController {
 	 * @param vehicle
 	 * @return response
 	 */
-	public VehicleResponse addVehicleToList(Vehicle vehicle) {
-		VehicleResponse response = new VehicleResponse();
+	public VehicleResponse<String> addVehicleToList(Vehicle vehicle) {
+		VehicleResponse<String> response = new VehicleResponse<String>();
 
-		if (vehicle.getBrand().isBlank() || vehicle.getModel().isBlank()) {
+		if (vehicle.getBrand() == null || vehicle.getBrand().isBlank() || vehicle.getModel() == null
+				|| vehicle.getModel().isBlank()) {
 			response.setErrorMessage("Invalid Vehicle Data");
 			response.setStatusCode(ERROR_STATUS_CODE);
 			return response;
@@ -56,6 +57,7 @@ public class VehicleController {
 		try {
 			vehicleService.addVehicle(vehicle);
 			response.setStatusCode(SUCCESS_STATUS_CODE);
+			response.setData("Vehicle Added Successfully");
 		} catch (VehicleServiceException e) {
 			response.setErrorMessage(e.getMessage());
 			response.setStatusCode(ERROR_STATUS_CODE);
@@ -78,13 +80,18 @@ public class VehicleController {
 	 * @param brand
 	 * @return response
 	 */
-	public VehicleResponse searchVehicle(String brand) {
-		VehicleResponse response = new VehicleResponse();
+	public VehicleResponse<List<Vehicle>> searchVehicle(String brand) {
+		VehicleResponse<List<Vehicle>> response = new VehicleResponse<List<Vehicle>>();
+		if (brand == null || brand.isBlank()) {
+			response.setErrorMessage("Brand and model must not be blank");
+			response.setStatusCode(ERROR_STATUS_CODE);
+			return response;
+		}
 
 		try {
 			List<Vehicle> vehicle = vehicleService.searchVehicle(brand);
 			response.setStatusCode(SUCCESS_STATUS_CODE);
-			response.setVehicles(vehicle);
+			response.setData(vehicle);
 		} catch (VehicleServiceException e) {
 			response.setStatusCode(ERROR_STATUS_CODE);
 			response.setErrorMessage(e.getMessage());
@@ -99,12 +106,17 @@ public class VehicleController {
 	 * @param model
 	 * @return response
 	 */
-	public VehicleResponse rentVehicle(String brand, String model) {
-		VehicleResponse response = new VehicleResponse();
+	public VehicleResponse<String> rentVehicle(String brand, String model) {
+		VehicleResponse<String> response = new VehicleResponse<String>();
+		if (brand == null || brand.isBlank() || model == null || model.isBlank()) {
+			response.setErrorMessage("Brand and model must not be blank");
+			response.setStatusCode(ERROR_STATUS_CODE);
+		}
 
 		try {
 			vehicleService.rentVehicle(brand, model);
 			response.setStatusCode(SUCCESS_STATUS_CODE);
+			response.setData("Vehicle rented successfully");
 		} catch (VehicleServiceException e) {
 			response.setStatusCode(ERROR_STATUS_CODE);
 			response.setErrorMessage(e.getMessage());
@@ -119,12 +131,17 @@ public class VehicleController {
 	 * @param model
 	 * @return response
 	 */
-	public VehicleResponse returnVehicle(String brand, String model) {
-		VehicleResponse response = new VehicleResponse();
+	public VehicleResponse<String> returnVehicle(String brand, String model) {
+		VehicleResponse<String> response = new VehicleResponse<String>();
+		if (brand == null || brand.isBlank() || model == null || model.isBlank()) {
+			response.setErrorMessage("Brand and model must not be blank");
+			response.setStatusCode(ERROR_STATUS_CODE);
+		}
 
 		try {
 			vehicleService.returnVehicle(brand, model);
 			response.setStatusCode(SUCCESS_STATUS_CODE);
+			response.setData("Vehicle returned successfully");
 		} catch (VehicleServiceException e) {
 			response.setStatusCode(ERROR_STATUS_CODE);
 			response.setErrorMessage(e.getMessage());
@@ -137,11 +154,11 @@ public class VehicleController {
 	 * 
 	 * @return response
 	 */
-	public VehicleResponse getAvailableVehicle() {
-		VehicleResponse response = new VehicleResponse();
+	public VehicleResponse<List<Vehicle>> getAvailableVehicle() {
+		VehicleResponse<List<Vehicle>> response = new VehicleResponse<List<Vehicle>>();
 
 		try {
-			response.setVehicles(vehicleService.getAvailableVehicle());
+			response.setData(vehicleService.getAvailableVehicle());
 			response.setStatusCode(SUCCESS_STATUS_CODE);
 		} catch (VehicleServiceException e) {
 			response.setStatusCode(ERROR_STATUS_CODE);
