@@ -1,0 +1,9 @@
+Enter Username: 
+Devan
+Enter age: 
+30
+Enter email: 
+devan@gmail.com
+Enter password: 
+devan123
+Registered Successfully!! User Details: Username=Devan, Age=30, Email=devan@gmail.com
