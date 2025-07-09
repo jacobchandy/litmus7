@@ -1,5 +1,7 @@
 package com.litmus7.userregistration.service;
 
+import java.util.regex.Pattern;
+
 import com.litmus7.userregistration.dao.UserDao;
 import com.litmus7.userregistration.dto.User;
 import com.litmus7.userregistration.exception.*;
@@ -10,6 +12,11 @@ import com.litmus7.userregistration.exception.*;
  */
 public class UserService {
 	private UserDao userDao = new UserDao();
+	private static final int LOWER_AGE_LIMIT = 18;
+	private static final int UPPER_AGE_LIMIT = 60;
+	private static final int PASSWORD_LENGTH = 6;
+	private static final String EMAIL_REGEX = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+	private static final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
 
 	/**
 	 * Registering the user into the database
@@ -31,7 +38,7 @@ public class UserService {
 		User user = new User(username, age, email, password);
 
 		try {
-			if (userDao.userExists(email, username)) {
+			if (userDao.getUser(email, username)) {
 				throw new UserServiceException("A user already exists");
 			}
 			userDao.addUserToDB(user);
@@ -53,14 +60,17 @@ public class UserService {
 	 */
 	public void validateUser(int age, String email, String password)
 			throws InvalidAgeException, InvalidEmailException, WeakPasswordException {
-		if (age < 18 || age > 60) {
-			throw new InvalidAgeException("Age must be within 18 and 60");
+
+		if (age < LOWER_AGE_LIMIT || age > UPPER_AGE_LIMIT) {
+			throw new InvalidAgeException("Age must be within " + LOWER_AGE_LIMIT + " and " + UPPER_AGE_LIMIT);
 		}
-		if (!email.contains("@") || (!email.contains("."))) {
-			throw new InvalidEmailException("Invalid email format. Must contain '@' and '.'");
+
+		if (!EMAIL_PATTERN.matcher(email).matches()) {
+			throw new InvalidEmailException("Invalid email format.");
 		}
-		if (password.length() < 6) {
-			throw new WeakPasswordException("Password is weak! Must be at least 6 characters.");
+
+		if (password.length() < PASSWORD_LENGTH) {
+			throw new WeakPasswordException("Password is weak! Must be at least " + PASSWORD_LENGTH + " characters.");
 		}
 	}
 }
