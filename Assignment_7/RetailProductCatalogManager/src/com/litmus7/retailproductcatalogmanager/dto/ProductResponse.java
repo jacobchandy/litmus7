@@ -1,5 +1,12 @@
 package com.litmus7.retailproductcatalogmanager.dto;
 
+/**
+ * Generic response wrapper for controller responses. Contains status
+ * code, success and error messages, and optional data. Supports generic data
+ * types for flexible reuse.
+ *
+ * @param <T> The type of data being returned in the response.
+ */
 public class ProductResponse<T> {
 	private int statusCode;
 	private String errorMessage;

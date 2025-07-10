@@ -1,5 +1,10 @@
 package com.litmus7.retailproductcatalogmanager.dto;
 
+/**
+ * Represents a product entity in the catalog. Contains fields for product ID,
+ * name, category, price, and stock quantity. Used for data transfer between
+ * layers.
+ */
 public class Product {
 	private int productId;
 	private String name;
@@ -55,10 +60,10 @@ public class Product {
 	public void setStockQuantity(int stockQuantity) {
 		this.stockQuantity = stockQuantity;
 	}
-	
+
 	@Override
-    public String toString() {
-        return String.format("ID: %d | Name: %s | Category: %s | Price: ₹%.2f | Stock: %d",
-             productId, name, category, price, stockQuantity);
-    }
+	public String toString() {
+		return String.format("ID: %d | Name: %s | Category: %s | Price: ₹%.2f | Stock: %d", productId, name, category,
+				price, stockQuantity);
+	}
 }
